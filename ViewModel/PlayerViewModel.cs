@@ -108,6 +108,7 @@ namespace Laboration_3.ViewModel
             {
                 _isPlayerModeVisible = value;
                 RaisePropertyChanged();
+                mainWindowViewModel.ConfigurationViewModel.SwitchToConfigurationModeCommand.RaiseCanExecuteChanged();
             }
         }
 
