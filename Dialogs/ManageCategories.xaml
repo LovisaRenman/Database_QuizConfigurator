@@ -1,0 +1,97 @@
+﻿<Window x:Class="Database_QuizConfigurator.Dialogs.AddCategories"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Database_QuizConfigurator.Dialogs"
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp" 
+        xmlns:viewmodel="clr-namespace:Laboration_3.ViewModel" 
+        d:DataContext="{d:DesignInstance Type=viewmodel:ConfigurationViewModel}"
+        DataContext="{Binding ConfigurationViewModel}"
+        mc:Ignorable="d"
+        Title="Manage Categories" 
+        Height="320" Width="400"
+        ResizeMode="NoResize"
+        WindowStyle="SingleBorderWindow"
+        WindowStartupLocation="CenterOwner">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="15"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Manage Categories" 
+               FontSize="16" 
+               FontWeight="Bold"
+               Grid.Row="0"  
+               HorizontalAlignment="Left" 
+               VerticalAlignment="Bottom"
+               Margin="10 0">
+        </Label>
+
+        <ListBox Grid.Column="0" 
+                 Grid.Row="1"
+                 ItemsSource="{Binding Categories}" 
+                 Margin="10 5"
+                 SelectedItem="{Binding SelectedCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" >
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding Path=Name}" 
+                           FontWeight="Regular"
+                           FontSize="12"
+                           Margin="0 5 0 0"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+         
+        <Label Content="Category Name" 
+                FontWeight="Regular" 
+                FontStyle="Oblique"
+                FontSize="14"
+                VerticalAlignment="Bottom"
+                Grid.Column="1" 
+                Grid.Row="0"
+                Margin="5 0 0 0"/>
+
+        <TextBox x:Name="tb"
+                    Text ="{Binding CategoryName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    Grid.Column="1" 
+                    Grid.Row="1"
+                    FontSize="12"
+                    VerticalAlignment="Top"
+                    Height="30"
+                    Margin="10 5 10 10"
+                    Padding="2 5 2 5"/>
+
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Grid.Column="1" 
+                    Grid.Row="1">
+            <Button Command ="{Binding AddCategoryCommand}" 
+                    Content="Add"
+                    FontSize="12"
+                    Height="20"
+                    Margin="0 50 5 0" 
+                    Padding="10 0 10 0"/>
+            <Button Command ="{Binding DeleteCategoryCommand}"
+                    Content="Delete"
+                    FontSize="12"
+                    Height="20"
+                    Margin="5 50 10 0" 
+                    Padding="10 0 10 0"/>
+        </StackPanel>
+
+    </Grid>
+
+</Window>
